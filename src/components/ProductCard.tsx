@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Product } from "../types/product";
+import noImage from '../assets/Noimage.png'
+
 
 type ProductCardProps = {
     product: Product
@@ -13,6 +15,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           src={product.image}
           alt={product.title}
           className="mb-4 h-40 w-full object-contain"
+          onError={(e) => {
+            e.currentTarget.src = noImage
+          }}
         />
 
         <h2 className="line-clamp-2 text-sm font-semibold text-slate-900">

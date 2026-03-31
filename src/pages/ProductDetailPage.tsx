@@ -4,8 +4,8 @@ import { getProductById } from '../services/productService'
 import type { Product } from '../types/product'
 import { useCartStore } from '../store/cartStore'
 import { useAuthStore } from '../store/authStore'
-
-
+import noImage from '../assets/Noimage.png'
+  
 const ProductDetailPage = () => {
   const { id } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
@@ -67,6 +67,9 @@ const ProductDetailPage = () => {
             src={product.image}
             alt={product.title}
             className="h-80 w-full object-contain"
+            onError={(e) => {
+              e.currentTarget.src = noImage
+            }}
           />
         </div>
 
