@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import { getAllProducts } from '../services/productService'
 import type { Product } from '../types/product'
+import { useCategoriesStore } from '../store/categoriesStore'
 
 const PRODUCTS_PER_PAGE = 8
 
@@ -30,10 +31,19 @@ const HomePage = () => {
     fetchProducts()
   }, [])
 
+  const inactiveCategories = useCategoriesStore(
+  (state) => state.inactiveCategories,
+  )
+
   const filteredProducts = useMemo(() => {
     const normalizedSearch = searchTerm.toLowerCase().trim()
 
     return products.filter((product) => {
+
+      const isCategoryInactive = inactiveCategories.includes(product.category)
+      if (isCategoryInactive){
+        return false
+      }
       const matchesTitle = product.title.toLowerCase().includes(normalizedSearch)
       const matchesCategory = product.category
         .toLowerCase()
@@ -63,6 +73,7 @@ const HomePage = () => {
   if (error) {
     return <div className="p-6 text-red-600">{error}</div>
   }
+
 
   return (
     <section className="p-6">

@@ -19,6 +19,8 @@ type AuthStore = {
   register: (data: RegisterData) => { success: boolean; message: string }
   login: (data: LoginData) => { success: boolean; message: string }
   logout: () => void
+  deleteUser: (userId: number) => void
+  toggleUserStatus: (userId: number) => void
 }
 
 const getStoredUsers = (): User[] => {
@@ -118,4 +120,40 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
       currentUser: null,
     })
   },
+
+  deleteUser: (userId) => {
+  const updatedUsers = get().users.filter((user) => user.id !== userId)
+
+  localStorage.setItem('users', JSON.stringify(updatedUsers))
+
+  set({
+    users: updatedUsers,
+  })
+},
+
+toggleUserStatus: (userId) => {
+  const updatedUsers = get().users.map((user) =>
+    user.id === userId
+      ? { ...user, isActive: !user.isActive }
+      : user,
+  )
+
+  localStorage.setItem('users', JSON.stringify(updatedUsers))
+
+  const currentUser = get().currentUser
+  const updatedCurrentUser = currentUser
+    ? updatedUsers.find((user) => user.id === currentUser.id) ?? null
+    : null
+
+  if (updatedCurrentUser) {
+    localStorage.setItem('currentUser', JSON.stringify(updatedCurrentUser))
+  } else {
+    localStorage.removeItem('currentUser')
+  }
+
+  set({
+    users: updatedUsers,
+    currentUser: updatedCurrentUser,
+  })
+},
 }))
