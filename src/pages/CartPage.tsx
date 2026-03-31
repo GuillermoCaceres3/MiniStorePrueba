@@ -6,7 +6,7 @@ import { useOrdersStore } from '../store/orderStore'
 const CartPage = () => {
   const navigate = useNavigate()
   const currentUser = useAuthStore((state) => state.currentUser)
-  
+
   const items = useCartStore((state) => state.items)
   const removeFromCart = useCartStore((state) => state.removeFromCart)
   const increaseQuantity = useCartStore((state) => state.increaseQuantity)
@@ -14,6 +14,21 @@ const CartPage = () => {
   const clearCart = useCartStore((state) => state.clearCart)
   const totalPrice = useCartStore((state) => state.getTotalPrice())
   const totalItems = useCartStore((state) => state.getTotalItems())
+
+  const createOrder = useOrdersStore((state) => state.createOrder)
+
+  const handleCheckout = () => {
+    if (!currentUser || items.length === 0) return
+
+    createOrder({
+      userId: currentUser.id,
+      items,
+      total: totalPrice
+    })
+
+    clearCart()
+    navigate('/orders')
+  }
 
   if (items.length === 0) {
     return (
@@ -112,7 +127,9 @@ const CartPage = () => {
             <span>${totalPrice.toFixed(2)}</span>
           </div>
 
-          <button className="mt-6 w-full rounded-lg bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+          <button 
+          onClick={handleCheckout}
+          className="mt-6 w-full rounded-lg bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
             Proceed to Checkout
           </button>
         </aside>
