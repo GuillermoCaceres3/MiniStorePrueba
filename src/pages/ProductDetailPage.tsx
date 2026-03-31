@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { getProductById } from '../services/productService'
 import type { Product } from '../types/product'
 import { useCartStore } from '../store/cartStore'
+import { useAuthStore } from '../store/authStore'
+
 
 const ProductDetailPage = () => {
   const { id } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate()
+  const currentUser = useAuthStore((state) => state.currentUser)
   const addToCart = useCartStore((state) => state.addToCart)
+
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -45,6 +51,14 @@ const ProductDetailPage = () => {
     return <div className="p-6">Product not found.</div>
   }
 
+  const handleAddToCart = () => {
+        if (!currentUser){
+          navigate('/login')
+          return
+        }
+        addToCart(product)
+      }
+
   return (
     <section className="p-6">
       <div className="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2">
@@ -71,7 +85,7 @@ const ProductDetailPage = () => {
             {product.description}
           </p>
           <button 
-          onClick={() => addToCart(product)}
+          onClick={handleAddToCart}
           className="mt-8 rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
             Add to cart
           </button>

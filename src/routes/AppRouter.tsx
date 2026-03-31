@@ -6,6 +6,8 @@ import ProductDetailPage from '../pages/ProductDetailPage'
 import CartPage from '../pages/CartPage'
 import AdminDashboardPage from '../pages/AdminDashboardPage'
 import OrdersPage from '../pages/OrdersPage'
+import ProtectedRoute from './ProtectedRoute'
+import AdminRoute from './AdminRoute'
 
 const AppRouter = () => {
     return (
@@ -14,9 +16,13 @@ const AppRouter = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/orders" element={<OrdersPage />} />
-            <Route path="/admin" element={<AdminDashboardPage />} />
+            <Route element={<ProtectedRoute />}>
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/orders" element={<OrdersPage />} />
+            </Route>
+            <Route element={<AdminRoute />}>
+                <Route path="/admin" element={<AdminDashboardPage />} />
+            </Route>
         </Routes>
     )
 }

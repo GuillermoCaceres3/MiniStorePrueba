@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../store/authStore'
 import { useCartStore } from '../store/cartStore'
+import { useOrdersStore } from '../store/orderStore'
 
 const CartPage = () => {
+  const navigate = useNavigate()
+  const currentUser = useAuthStore((state) => state.currentUser)
+  
   const items = useCartStore((state) => state.items)
   const removeFromCart = useCartStore((state) => state.removeFromCart)
   const increaseQuantity = useCartStore((state) => state.increaseQuantity)

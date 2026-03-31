@@ -2,19 +2,23 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import UserDropdown from './UserDropdown'
 import { useCartStore } from '../store/cartStore'
+import { useAuthStore } from '../store/authStore'
 
-type Role = 'guest' | 'user' | 'admin'
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-  // Mock data temporal
-  const [role] = useState<Role>('user')
-  const username = 'Guille'
+  const currentUser = useAuthStore((state) => state.currentUser)
+  const logout = useAuthStore((state) => state.logout)
   const cartItemsCount = useCartStore((state) => state.getTotalItems())
+  const clearCart = useCartStore((state) => state.clearCart)
+  const role = currentUser ?.role || 'guest'
+  const username = currentUser ?.username || 'Account'
 
   const handleLogout = () => {
-    console.log('Logging out...')
+    logout()
+    clearCart()
+    setIsDropdownOpen(false)
   }
 
   return (
@@ -46,12 +50,12 @@ const Navbar = () => {
               onClick={() => setIsDropdownOpen((prev) => !prev)}
               className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
             >
-              {role === 'guest' ? 'Account' : username}
+              {username}
             </button>
 
             <UserDropdown
               role={role}
-              username={role === 'guest' ? 'Account' : username}
+              username={username}
               isOpen={isDropdownOpen}
               onLogout={handleLogout}
             />
