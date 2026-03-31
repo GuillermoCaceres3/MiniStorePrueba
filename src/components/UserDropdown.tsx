@@ -20,7 +20,7 @@ const UserDropdown = ({
     <div className="absolute right-0 top-12 z-50 w-56 rounded-xl border border-slate-200 bg-white p-2 shadow-lg">
       <div className="border-b border-slate-100 px-3 py-2">
         <p className="text-sm font-semibold text-slate-800">
-          {username || 'Guest'}
+          {username || 'Invitado'}
         </p>
       </div>
 
@@ -31,13 +31,13 @@ const UserDropdown = ({
               to="/login"
               className="rounded-lg px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
             >
-              Sign In
+              Iniciar sesión
             </Link>
             <Link
               to="/register"
               className="rounded-lg px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
             >
-              Sign Up
+              Registrarse
             </Link>
           </>
         )}
@@ -48,13 +48,13 @@ const UserDropdown = ({
               to="/orders"
               className="rounded-lg px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
             >
-              My Orders
+              Mis ordenes
             </Link>
             <button
               onClick={onLogout}
               className="rounded-lg px-3 py-2 text-left text-sm text-red-600 transition hover:bg-red-50"
             >
-              Logout
+              Cerrar sesión
             </button>
           </>
         )}
@@ -65,13 +65,13 @@ const UserDropdown = ({
               to="/admin"
               className="rounded-lg px-3 py-2 text-sm text-slate-700 transition hover:bg-slate-100"
             >
-              Admin Dashboard
+              Panel de administrador
             </Link>
             <button
               onClick={onLogout}
               className="rounded-lg px-3 py-2 text-left text-sm text-red-600 transition hover:bg-red-50"
             >
-              Logout
+              Cerrar sesión
             </button>
           </>
         )}

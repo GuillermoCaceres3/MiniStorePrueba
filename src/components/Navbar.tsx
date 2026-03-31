@@ -16,7 +16,7 @@ const Navbar = () => {
   const clearCart = useCartStore((state) => state.clearCart)
 
   const role = currentUser?.role ?? 'guest'
-  const username = currentUser?.username ?? 'Account'
+  const username = currentUser?.username ?? 'Cuenta'
 
   const handleLogout = () => {
     logout()
@@ -53,7 +53,7 @@ const Navbar = () => {
             Mini Store
           </Link>
         </div>
-        
+
         <div className="flex w-48 items-center justify-end gap-3">
           {role === 'user' && (
             <Link

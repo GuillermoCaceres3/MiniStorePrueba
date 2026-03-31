@@ -33,9 +33,9 @@ const AdminDashboardPage = () => {
   return (
     <section className="p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Panel de administrador</h1>
         <p className="mt-2 text-sm text-slate-600">
-          Manage users, orders, and categories from one place.
+          Gestiona usuarios, órdenes y categorías desde un solo lugar.
         </p>
       </div>
 
@@ -48,7 +48,7 @@ const AdminDashboardPage = () => {
               : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
           }`}
         >
-          Users
+          Usuarios
         </button>
 
         <button
@@ -59,7 +59,7 @@ const AdminDashboardPage = () => {
               : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
           }`}
         >
-          Orders
+          Ordenes
         </button>
 
         <button
@@ -70,7 +70,7 @@ const AdminDashboardPage = () => {
               : 'border border-slate-300 bg-white text-slate-700 hover:bg-slate-100'
           }`}
         >
-          Categories
+          Categorías
         </button>
       </div>
 

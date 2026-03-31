@@ -8,8 +8,8 @@ const OrdersPage = () => {
   if (!currentUser) {
     return (
       <section className="p-6">
-        <h1 className="text-3xl font-bold text-slate-900">My Orders</h1>
-        <p className="mt-4 text-slate-600">You need to be logged in.</p>
+        <h1 className="text-3xl font-bold text-slate-900">Mis Ordenes</h1>
+        <p className="mt-4 text-slate-600">Necesitas iniciar sesión.</p>
       </section>
     )
   }
@@ -19,9 +19,9 @@ const OrdersPage = () => {
   if (userOrders.length === 0) {
     return (
       <section className="p-6">
-        <h1 className="mb-4 text-3xl font-bold text-slate-900">My Orders</h1>
+        <h1 className="mb-4 text-3xl font-bold text-slate-900">Mis Ordenes</h1>
         <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-          <p className="text-slate-600">You have no orders yet.</p>
+          <p className="text-slate-600">Todavía no tienes ordenes.</p>
         </div>
       </section>
     )
@@ -29,7 +29,7 @@ const OrdersPage = () => {
 
   return (
     <section className="p-6">
-      <h1 className="mb-6 text-3xl font-bold text-slate-900">My Orders</h1>
+      <h1 className="mb-6 text-3xl font-bold text-slate-900">Mis Ordenes</h1>
 
       <div className="space-y-6">
         {userOrders
@@ -43,7 +43,7 @@ const OrdersPage = () => {
               <div className="flex flex-col gap-2 border-b border-slate-100 pb-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-medium text-slate-900">
-                    Order #{order.id}
+                    Orden #{order.id}
                   </p>
                   <p className="text-sm text-slate-500">
                     {new Date(order.createdAt).toLocaleString()}

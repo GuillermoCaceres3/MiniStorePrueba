@@ -67,7 +67,7 @@ const HomePage = () => {
   }, [searchTerm])
 
   if (isLoading) {
-    return <div className="p-6">Loading products...</div>
+    return <div className="p-6">Cargando productos...</div>
   }
 
   if (error) {
@@ -78,11 +78,11 @@ const HomePage = () => {
   return (
     <section className="p-6">
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-3xl font-bold text-slate-900">Products</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Productos</h1>
 
         <input
           type="text"
-          placeholder="Search by title or category..."
+          placeholder="Buscar por titulo o categoría..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full max-w-md rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm outline-none focus:border-slate-500"
@@ -90,7 +90,7 @@ const HomePage = () => {
       </div>
 
       {filteredProducts.length === 0 ? (
-        <p className="text-slate-600">No products found.</p>
+        <p className="text-slate-600">No se encontraron productos.</p>
       ) : (
         <>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -105,11 +105,11 @@ const HomePage = () => {
               disabled={currentPage === 1}
               className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Prev
+              Anterior
             </button>
 
             <span className="text-sm text-slate-700">
-              Page {currentPage} of {totalPages || 1}
+              Página {currentPage} de {totalPages || 1}
             </span>
 
             <button
@@ -117,7 +117,7 @@ const HomePage = () => {
               disabled={currentPage === totalPages || totalPages === 0}
               className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Next
+              Siguiente
             </button>
           </div>
         </>

@@ -7,13 +7,13 @@ const AdminOrdersSection = () => {
   if (orders.length === 0) {
     return (
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-xl font-bold text-slate-900">Orders</h2>
+        <h2 className="text-xl font-bold text-slate-900">Ordenes</h2>
         <p className="mt-2 text-sm text-slate-600">
-          Review all orders placed in the system.
+          Revisa todas las órdenes colocadas en el sistema.
         </p>
 
         <div className="mt-6 rounded-lg border border-slate-100 bg-slate-50 p-4">
-          <p className="text-sm text-slate-500">No orders found.</p>
+          <p className="text-sm text-slate-500">No se encontraron ordenes.</p>
         </div>
       </div>
     )
@@ -22,9 +22,9 @@ const AdminOrdersSection = () => {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
       <div className="mb-4">
-        <h2 className="text-xl font-bold text-slate-900">Orders</h2>
+        <h2 className="text-xl font-bold text-slate-900">Ordenes</h2>
         <p className="mt-2 text-sm text-slate-600">
-          Review all orders placed in the system.
+          Revisa todas las órdenes colocadas en el sistema.
         </p>
       </div>
 
@@ -40,10 +40,10 @@ const AdminOrdersSection = () => {
               <div className="flex flex-col gap-2 border-b border-slate-200 pb-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-slate-900">
-                    Order #{order.id}
+                    Orden #{order.id}
                   </p>
                   <p className="text-sm text-slate-500">
-                    User ID: {order.userId}
+                    ID de usuario: {order.userId}
                   </p>
                   <p className="text-sm text-slate-500">
                     {new Date(order.createdAt).toLocaleString()}
@@ -62,7 +62,7 @@ const AdminOrdersSection = () => {
 
               <div className="mt-4">
                 <p className="mb-3 text-sm font-medium text-slate-700">
-                  Items ({order.items.length})
+                  Productos ({order.items.length})
                 </p>
 
                 <div className="space-y-3">

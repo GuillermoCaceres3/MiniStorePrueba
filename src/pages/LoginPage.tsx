@@ -39,9 +39,9 @@ const LoginPage = () => {
   return (
     <section className="flex min-h-[calc(100vh-80px)] items-center justify-center p-6">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Sign In</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Iniciar sesión</h1>
         <p className="mt-2 text-sm text-slate-500">
-          Welcome back. Enter your credentials to continue.
+          Bienvenido de nuevo. Ingresa tus credenciales para continuar.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -58,7 +58,7 @@ const LoginPage = () => {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="tucorreo@example.com"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none transition focus:border-slate-500"
               required
             />
@@ -69,7 +69,7 @@ const LoginPage = () => {
               htmlFor="password"
               className="mb-1 block text-sm font-medium text-slate-700"
             >
-              Password
+              Contraseña
             </label>
             <input
               id="password"
@@ -77,7 +77,7 @@ const LoginPage = () => {
               type="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your password"
+              placeholder="Ingresa tu contraseña"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none transition focus:border-slate-500"
               required
             />
@@ -93,17 +93,17 @@ const LoginPage = () => {
             type="submit"
             className="w-full rounded-lg bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
           >
-            Sign In
+            Iniciar sesión
           </button>
         </form>
 
         <p className="mt-6 text-sm text-slate-600">
-          Don't have an account?{' '}
+          No tienes una cuenta?{' '}
           <Link
             to="/register"
             className="font-medium text-slate-900 underline-offset-2 hover:underline"
           >
-            Sign Up
+            Registrarse
           </Link>
         </p>
       </div>

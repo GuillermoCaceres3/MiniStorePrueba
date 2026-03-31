@@ -40,9 +40,9 @@ const RegisterPage = () => {
   return (
     <section className="flex min-h-[calc(100vh-80px)] items-center justify-center p-6">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-bold text-slate-900">Sign Up</h1>
+        <h1 className="text-3xl font-bold text-slate-900">Registrarse</h1>
         <p className="mt-2 text-sm text-slate-500">
-          Create an account to start shopping.
+          Crea una cuenta para empezar a comprar.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -59,7 +59,7 @@ const RegisterPage = () => {
               type="text"
               value={formData.username}
               onChange={handleChange}
-              placeholder="Enter your username"
+              placeholder="Ingresa tu username"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none transition focus:border-slate-500"
               required
             />
@@ -78,7 +78,7 @@ const RegisterPage = () => {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="you@example.com"
+              placeholder="tucorreo@example.com"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none transition focus:border-slate-500"
               required
             />
@@ -89,7 +89,7 @@ const RegisterPage = () => {
               htmlFor="password"
               className="mb-1 block text-sm font-medium text-slate-700"
             >
-              Password
+              Contraseña
             </label>
             <input
               id="password"
@@ -97,7 +97,7 @@ const RegisterPage = () => {
               type="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Create a password"
+              placeholder="Ingresa tu contraseña"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm outline-none transition focus:border-slate-500"
               required
             />
@@ -113,17 +113,17 @@ const RegisterPage = () => {
             type="submit"
             className="w-full rounded-lg bg-slate-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
           >
-            Sign Up
+            Registrarse
           </button>
         </form>
 
         <p className="mt-6 text-sm text-slate-600">
-          Already have an account?{' '}
+          ¿Ya tienes una cuenta?{' '}
           <Link
             to="/login"
             className="font-medium text-slate-900 underline-offset-2 hover:underline"
           >
-            Sign In
+            Iniciar sesión
           </Link>
         </p>
       </div>
