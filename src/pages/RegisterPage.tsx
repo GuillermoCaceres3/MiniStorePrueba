@@ -116,7 +116,6 @@ const RegisterPage = () => {
             Registrarse
           </button>
         </form>
-
         <p className="mt-6 text-sm text-slate-600">
           ¿Ya tienes una cuenta?{' '}
           <Link

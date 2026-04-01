@@ -1,23 +1,13 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuthStore } from '../store/authStore'
 
 const ForgotPasswordPage = () => {
-  const users = useAuthStore((state) => state.users)
 
   const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    const normalizedEmail = email.trim().toLowerCase()
-
-    const emailExists = users.some(
-      (user) => user.email.trim().toLowerCase() === normalizedEmail,
-    )
-
-
 
     setSubmitted(true)
   }
