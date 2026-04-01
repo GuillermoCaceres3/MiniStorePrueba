@@ -90,14 +90,14 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
     if (!user) {
       return {
         success: false,
-        message: 'Invalid email or password.',
+        message: 'correo o contraseña incorrectos',
       }
     }
 
     if (!user.isActive) {
       return {
         success: false,
-        message: 'This user has been deactivated.',
+        message: 'Este usuario ha sido desactivado',
       }
     }
 
