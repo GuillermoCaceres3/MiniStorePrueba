@@ -1,73 +1,103 @@
-# React + TypeScript + Vite
+# Mini Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mini Store es una prueba técnica frontend desarrollada con React, Vite, TypeScript, Tailwind CSS, React Router y Zustand.
 
-Currently, two official plugins are available:
+La aplicación implementa un flujo de e-commerce con autenticación, exploración de productos, carrito de compras, creación de órdenes y un panel de administración para gestionar usuarios, órdenes y visibilidad de categorías.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Demo en producción
 
-## React Compiler
+Agregar aquí la URL desplegada en Vercel:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+`https://mini-store-prueba-qytc.vercel.app/`
 
-## Expanding the ESLint configuration
+## Repositorio
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Agregar aquí la URL del repositorio:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+`https://github.com/GuillermoCaceres3/MiniStorePrueba`
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tecnologías utilizadas
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- React Router DOM
+- Zustand
+
+## Funcionalidades por rol
+
+### Invitado
+Un usuario no autenticado puede:
+- Visualizar productos
+- Ver el detalle de los productos
+- Buscar productos por nombre o categoría
+- Filtrar productos por categoría
+- Ordenar productos por precio
+- Navegar con paginación
+- Acceder a inicio de sesión, registro y recuperación de contraseña
+
+### Usuario
+Un usuario autenticado puede:
+- Realizar todas las acciones del invitado
+- Agregar productos al carrito
+- Aumentar o disminuir cantidades dentro del carrito
+- Eliminar productos del carrito
+- Vaciar el carrito con confirmación
+- Confirmar una compra
+- Visualizar su historial de órdenes
+
+### Administrador
+Un administrador puede:
+- Realizar todas las acciones del invitado
+- Acceder al panel de administración
+- Visualizar usuarios registrados
+- Activar y desactivar usuarios
+- Eliminar usuarios
+- Visualizar todas las órdenes del sistema
+- Filtrar órdenes por rango de fechas
+- Activar y desactivar categorías
+- Ocultar productos de categorías inactivas en la tienda
+
+## Manejo de estado y persistencia
+
+Zustand se utiliza para el manejo de estado global del lado cliente.
+
+En esta implementación, la persistencia se maneja desde el navegador mediante almacenamiento local para:
+- sesión autenticada
+- usuarios registrados
+- órdenes
+- estado de categorías activas e inactivas
+
+Además, el catálogo de productos se consume desde una API externa, y se implementó una capa de mapeo en el servicio de productos para normalizar la respuesta hacia el modelo interno utilizado por la aplicación.
+
+## Credenciales de administrador para prueba
+
+Para probar las funcionalidades del administrador, se puede utilizar el usuario semilla configurado en variables de entorno:
+
+- **Correo:** `admin@ministore.com`
+- **Contraseña:** `admin123`
+
+Un usuario normal puede registrarse directamente desde la pantalla de registro.
+
+## Variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```env
+VITE_ADMIN_EMAIL=admin@ministore.com
+VITE_ADMIN_PASSWORD=admin123
+VITE_API_URL=https://api.escuelajs.co/api/v1
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Consideraciones de implementación
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Esta solución se enfoca en entregar de forma funcional y ordenada los flujos principales requeridos en la prueba técnica, incluyendo navegación, autenticación, carrito, órdenes y administración.
+
+Para esta versión se priorizó completar la experiencia frontend end-to-end y asegurar una aplicación estable, navegable y desplegable. Por esa razón, la lógica de autenticación, usuarios, órdenes y administración fue resuelta del lado cliente, con persistencia local en el navegador.
+
+La implementación de una API propia y una base de datos persistente compartida quedó identificada como la evolución natural del proyecto, pero no se incluyó en esta entrega para mantener el alcance alineado con el tiempo disponible y priorizar el cumplimiento completo de las funcionalidades principales.
+
+Debido a este enfoque, la información almacenada en la aplicación se conserva por navegador y por dispositivo. Por lo tanto, usuarios, órdenes y sesiones no se comparten entre diferentes dispositivos.
+
