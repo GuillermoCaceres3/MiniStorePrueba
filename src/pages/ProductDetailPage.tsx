@@ -5,17 +5,16 @@ import type { Product } from '../types/product'
 import { useCartStore } from '../store/cartStore'
 import { useAuthStore } from '../store/authStore'
 import noImage from '../assets/Noimage.png'
-  
+
 const ProductDetailPage = () => {
   const { id } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
+
   const currentUser = useAuthStore((state) => state.currentUser)
   const addToCart = useCartStore((state) => state.addToCart)
-
-
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -52,15 +51,24 @@ const ProductDetailPage = () => {
   }
 
   const handleAddToCart = () => {
-        if (!currentUser){
-          navigate('/login')
-          return
-        }
-        addToCart(product)
-      }
+    if (!currentUser) {
+      navigate('/login')
+      return
+    }
+
+    addToCart(product)
+  }
 
   return (
     <section className="p-6">
+      <button
+        onClick={() => navigate('/')}
+        className="mb-4 inline-flex items-center justify-center rounded-full p-2 text-xl text-slate-700 transition hover:bg-slate-100 hover:text-slate-900"
+        aria-label="Volver"
+      >
+        ←
+      </button>
+
       <div className="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2">
         <div className="flex items-center justify-center rounded-xl bg-slate-50 p-6">
           <img
@@ -87,9 +95,11 @@ const ProductDetailPage = () => {
           <p className="mt-6 text-sm leading-6 text-slate-600">
             {product.description}
           </p>
-          <button 
-          onClick={handleAddToCart}
-          className="mt-8 rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800">
+
+          <button
+            onClick={handleAddToCart}
+            className="mt-8 rounded-lg bg-slate-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-slate-800"
+          >
             Add to cart
           </button>
         </div>

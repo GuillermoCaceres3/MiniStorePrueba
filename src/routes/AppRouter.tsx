@@ -8,6 +8,7 @@ import AdminDashboardPage from '../pages/AdminDashboardPage'
 import OrdersPage from '../pages/OrdersPage'
 import ProtectedRoute from './ProtectedRoute'
 import AdminRoute from './AdminRoute'
+import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 
 const AppRouter = () => {
     return (
@@ -23,6 +24,7 @@ const AppRouter = () => {
             <Route element={<AdminRoute />}>
                 <Route path="/admin" element={<AdminDashboardPage />} />
             </Route>
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         </Routes>
     )
 }

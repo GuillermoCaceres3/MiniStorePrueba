@@ -20,36 +20,28 @@ const HomePage = () => {
     (state) => state.inactiveCategories,
   )
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setIsLoading(true)
-        setError(null)
+useEffect(() => {
+  const fetchHomeData = async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
 
-        const data = await getAllProducts()
-        setProducts(data)
-      } catch {
-        setError('No se pudieron cargar los productos.')
-      } finally {
-        setIsLoading(false)
-      }
+      const [productsData, categoriesData] = await Promise.all([
+        getAllProducts(),
+        getAllCategories(),
+      ])
+
+      setProducts(productsData)
+      setCategories(categoriesData)
+    } catch {
+      setError('No se pudieron cargar los productos.')
+    } finally {
+      setIsLoading(false)
     }
+  }
 
-    fetchProducts()
-  }, [])
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await getAllCategories()
-        setCategories(data)
-      } catch (error) {
-        console.error('Error loading categories:', error)
-      }
-    }
-
-    fetchCategories()
-  }, [])
+  fetchHomeData()
+}, [])
 
   const filteredProducts = useMemo(() => {
     const normalizedSearch = searchTerm.toLowerCase().trim()
